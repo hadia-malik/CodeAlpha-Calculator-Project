@@ -1,0 +1,511 @@
+/* ================================ 1. GENERAL RESET ================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+    background: linear-gradient(135deg, #0f172a, #1e293b, #312e81);
+    color: #f8fafc;
+}
+
+/* ================================ 2. CALCULATOR CONTAINER ================================ */
+.calculator-main-part {
+    width: 100%;
+    max-width: 420px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    background: rgba(15, 23, 42, 0.9);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+}
+
+/* ================================ 3. HEADER ================================ */
+header {
+    width: 100%;
+    max-width: 420px;
+
+    margin-bottom: 20px;
+    padding: 0 4px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calculator-label {
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #818cf8;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #f8fafc;
+}
+.calculator-subtitle {
+    margin-top: 5px;
+
+    font-size: 12px;
+    letter-spacing: 0.5px;
+
+    color: #94a3b8;
+}
+
+/* Theme Button */
+.theme-btn {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    background: #1e293b;
+    color: #f8fafc;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.theme-btn:hover {
+    background: #334155;
+    transform: rotate(15deg);
+
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.25);
+}
+
+/* ================================ 4. DISPLAY ================================ */
+.display {
+    width: 100%;
+    min-height: 120px;
+    margin-bottom: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border-radius: 18px;
+    background: #020617;
+    overflow: hidden;
+}
+
+.previous-display {
+    width: 100%;
+    min-height: 25px;
+    text-align: right;
+    font-size: 16px;
+    color: #64748b;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.current-display {
+    width: 100%;
+    margin-top: 5px;
+    text-align: right;
+    font-size: 42px;
+    font-weight: 600;
+    color: #f8fafc;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* Hide scrollbar inside display */
+.current-display::-webkit-scrollbar {
+    display: none;
+}
+
+/* ================================ 5. CALCULATOR BUTTON GRID ================================ */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+/* ================================ 6. ALL CALCULATOR BUTTONS ================================ */
+.buttons button {
+    min-height: 62px;
+    border: none;
+    border-radius: 16px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+/* Click effect */
+.buttons button:active {
+    transform: scale(0.94);
+}
+
+/* ================================ 7. NUMBER BUTTONS ================================ */
+.number-button {
+    background: #1e293b;
+    color: #f8fafc;
+}
+
+.number-button:hover {
+    background: #334155;
+}
+
+/* ================================ 8. ACTION BUTTONS ================================ */
+.action-button {
+    background: #334155;
+    color: #cbd5e1;
+}
+
+.action-button:hover {
+    background: #475569;
+}
+
+/* ================================ 9. OPERATION BUTTONS ================================ */
+.operation-button {
+    background: #312e81;
+    color: #c7d2fe;
+}
+
+.operation-button:hover {
+    background: #4338ca;
+}
+
+button[data-action="calculate"] {
+    background: #4f46e5;
+    color: white;
+    grid-column: span 2;
+}
+
+button[data-action="calculate"]:hover {
+    background: #6366f1;
+}
+
+/* ================================ 11. HISTORY ================================ */
+.history {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.history-header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.clear-history-btn {
+    padding: 7px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #818cf8;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.clear-history-btn:hover {
+    background: rgba(99, 102, 241, 0.1);
+    color: #a5b4fc;
+}
+
+/* ================================ 12. HISTORY LIST ================================ */
+.history-list {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+/* Individual history item JavaScript will create these later. */
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 14px;
+}
+
+.history-expression {
+    color: #94a3b8;
+}
+
+.history-result {
+    font-weight: 600;
+    color: #f8fafc;
+}
+
+/* History scrollbar */
+.history-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 10px;
+}
+
+/* ================================ 13. RESPONSIVE DESIGN ================================ */
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+
+    .calculator-main-part {
+        padding: 18px;
+        border-radius: 20px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .display {
+        min-height: 105px;
+        padding: 16px;
+    }
+
+    .current-display {
+        font-size: 34px;
+    }
+
+    .buttons {
+        gap: 8px;
+    }
+
+    .buttons button {
+        min-height: 56px;
+        border-radius: 13px;
+        font-size: 18px;
+    }
+}
+
+/* ================================ 14. VERY SMALL SCREENS ================================ */
+@media (max-width: 350px) {
+    .calculator-main-part {
+        padding: 14px;
+    }
+
+    .buttons button {
+        min-height: 50px;
+        font-size: 16px;
+    }
+
+    .current-display {
+        font-size: 30px;
+    }
+}
+/* =====================================================
+   LIGHT THEME
+   ===================================================== */
+
+/* =========================
+   BODY / PAGE BACKGROUND
+========================= */
+
+body.light-mode {
+    background: linear-gradient(
+        135deg,
+        #e2e8f0,
+        #cbd5e1,
+        #a5b4fc
+    );
+
+    color: #0f172a;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+body.light-mode header h1 {
+    color: #0f172a;
+}
+
+body.light-mode .calculator-label {
+    color: #4f46e5;
+}
+
+body.light-mode .calculator-subtitle {
+    color: #475569;
+}
+
+
+/* =========================
+   THEME BUTTON
+========================= */
+
+body.light-mode .theme-btn {
+    background: #f8fafc;
+    color: #0f172a;
+    border-color: rgba(15, 23, 42, 0.12);
+}
+
+body.light-mode .theme-btn:hover {
+    background: #e2e8f0;
+    color: #4f46e5;
+}
+
+
+/* =========================
+   CALCULATOR CONTAINER
+========================= */
+
+body.light-mode .calculator-main-part {
+    background: rgba(255, 255, 255, 0.75);
+
+    border-color: rgba(15, 23, 42, 0.1);
+
+    box-shadow: 0 25px 60px rgba(15, 23, 42, 0.15);
+
+    backdrop-filter: blur(12px);
+}
+
+
+/* =========================
+   DISPLAY
+========================= */
+
+body.light-mode .display {
+    background: #f8fafc;
+}
+
+body.light-mode .previous-display {
+    color: #64748b;
+}
+
+body.light-mode .current-display {
+    color: #0f172a;
+}
+
+
+/* =========================
+   NUMBER BUTTONS
+========================= */
+
+body.light-mode .number-button {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+body.light-mode .number-button:hover {
+    background: #cbd5e1;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+   AC / DEL / %
+========================= */
+
+body.light-mode .action-button {
+    background: #cbd5e1;
+    color: #0f172a;
+}
+
+body.light-mode .action-button:hover {
+    background: #94a3b8;
+}
+
+
+/* =========================
+   OPERATION BUTTONS
+   ÷ × - +
+========================= */
+
+body.light-mode .operation-button {
+    background: #c7d2fe;
+    color: #312e81;
+}
+
+body.light-mode .operation-button:hover {
+    background: #a5b4fc;
+}
+
+
+/* =========================
+   EQUAL BUTTON
+========================= */
+
+body.light-mode button[data-action="calculate"] {
+    background: #4f46e5;
+    color: #ffffff;
+}
+
+body.light-mode button[data-action="calculate"]:hover {
+    background: #4338ca;
+}
+
+
+/* =========================
+   HISTORY SECTION
+========================= */
+
+body.light-mode .history {
+    border-top-color: rgba(15, 23, 42, 0.1);
+}
+
+body.light-mode .history-header h1 {
+    color: #0f172a;
+}
+
+
+/* =========================
+   CLEAR HISTORY BUTTON
+========================= */
+
+body.light-mode .clear-history-btn {
+    color: #4f46e5;
+}
+
+body.light-mode .clear-history-btn:hover {
+    background: rgba(79, 70, 229, 0.1);
+    color: #3730a3;
+}
+
+
+/* =========================
+   HISTORY ITEMS
+========================= */
+
+body.light-mode .history-item {
+    background: rgba(15, 23, 42, 0.04);
+    border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .history-expression {
+    color: #64748b;
+}
+
+body.light-mode .history-result {
+    color: #0f172a;
+}
+
+
+/* =========================
+   HISTORY SCROLLBAR
+========================= */
+
+body.light-mode .history-list::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+}

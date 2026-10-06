@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- * calculator header -->
+    <header>
+        <div>
+        <p class="calculator-label">Simple & Smart</p>
+        <h1>Calculator</h1>
+           <p class="calculator-subtitle">Quick. Simple. Accurate.</p>
+        </div>
+        <!-- * theme button -->
+            <button class="theme-btn" id="themeBtn" type="button">☾</button>
+    </header>
+    <!-- * main part -->
+     <main class="calculator-main-part">
+      <!-- *display section -->
+       <section class="display">
+        <div class="previous-display" id="previousDisplay">
+            <!-- * previous calculation will go here -->
+        </div>
+        <div class="current-display" id="currentDisplay">
+            0
+        </div>
+       </section>
+       <!-- * calculator buttons -->
+         <section class="buttons">
+           <!--* first row -->
+            <button class="action-button" data-action="clear" type="button">AC</button>
+            <button class="action-button" data-action="delete" type="button">DEL</button>
+            <button class="action-button" data-action="percentage" type="button">%</button>
+            <button class="operation-button" data-operation="/" type="button">÷</button>
+            <!--* second row -->
+             <button class="number-button" data-number="7" type="button">7</button>
+             <button class="number-button" data-number="8" type="button">8</button>
+             <button class="number-button" data-number="9" type="button">9</button>
+             <button class="operation-button" data-operation="*" type="button">×</button>
+             <!--* third row -->
+               <button class="number-button" data-number="4" type="button">4</button>
+               <button class="number-button" data-number="5" type="button">5</button>
+               <button class="number-button" data-number="6" type="button">6</button>
+               <button class="operation-button" data-operation="-" type="button">-</button>
+               <!-- * fourth row -->
+                 <button class="number-button" data-number="1" type="button">1</button>
+                 <button class="number-button" data-number="2" type="button">2</button>
+                 <button class="number-button" data-number="3" type="button">3</button>
+                 <button class="operation-button" data-operation="+" type="button">+</button>
+                 <!-- * fifth row -->
+                  <button class="number-button" data-number="0" type="button">0</button> 
+                   <button class="number-button" data-number="." type="button">.</button>
+                   <button class="action-button" data-action="calculate" type="button">=</button>
+         </section>
+         <!-- * calculation history -->
+          <section class="history">
+            <div class="history-header">
+       <h1>History</h1>
+       <button class="clear-history-btn" id="clearHistoryBtn" type="button">clear history</button>
+            </div>
+            <!-- *previous history list -->
+             <div class="history-list" id="historyList">
+                <!-- previous history list goes here -->
+             </div>
+
+          </section>
+     </main>
+    <script src="script.js"></script>
+</body>
+</html>
